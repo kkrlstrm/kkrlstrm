@@ -39,6 +39,8 @@ Technical strategy, operating standards, build-vs-buy decisions, review template
 
 ## The portfolio as a system
 
+> **Start here → [ai-native-gtm-architecture](https://github.com/kkrlstrm/ai-native-gtm-architecture)** — the reference architecture that explains how all of these compose and the invariant each one enforces. It's the system view; the repos below are the runnable layers.
+
 These aren't ten unrelated tools. They're the layers you need to run AI-native GTM **reliably** — intelligence and targeting at the top, and a stack of control planes underneath that most automation never builds.
 
 ```
