@@ -61,6 +61,7 @@ The repositories aren't scattered tools; they're one line of inquiry into the sa
 | **6** | Source-verified state & cost control | [gtm-research](https://github.com/kkrlstrm/gtm-research) | Reference impl · production-derived |
 | **7** | Provider abstraction & portable workflow | [gtm-pipeline](https://github.com/kkrlstrm/gtm-pipeline) | Reference impl · production-derived |
 | **8** | Recipient-side channel control | [gtm-deliverability](https://github.com/kkrlstrm/gtm-deliverability) | Reference impl · production-derived |
+| **9** | Human approval for unattended work | [abeyance](https://github.com/kkrlstrm/abeyance) | Reference impl · production-derived |
 | **★** | The operating model around all of it | [gtm-engineering-operating-model](https://github.com/kkrlstrm/gtm-engineering-operating-model) | Operating doctrine |
 
 **Maturity legend** — *Production-used*: I run it against my own live agent workflows. *Reference implementation · production-derived*: the pattern is extracted from a system in production; the public repo isolates the reusable architecture, with tenant data, provider adapters, and company-specific policy kept private.
@@ -78,6 +79,7 @@ AI-native platform  (proving ground: go-to-market)
 ├── Channel infrastructure       gtm-deliverability
 ├── Runtime observability        cc-logger · codex-logger
 ├── Execution controls           agent-guard · codex-guard
+├── Human approval gates         abeyance
 ├── Quality & policy enforcement model-eval-gate
 ├── Knowledge governance         knowledge-graph-governance
 └── Platform architecture        agent-tenancy
@@ -85,7 +87,7 @@ AI-native platform  (proving ground: go-to-market)
         └── operated by a team, per → gtm-engineering-operating-model
 ```
 
-**The through-line:** observe what agents actually do → promote recurring failures into runtime controls → gate model economics with evals → gate durable memory → isolate tenants structurally → run the motion on top → and lead the humans who own all of it.
+**The through-line:** observe what agents actually do → promote recurring failures into runtime controls → gate model economics with evals → gate durable memory → isolate tenants structurally → run the motion on top → hold the irreversible parts in abeyance until a human who wasn't there says yes → and lead the humans who own all of it.
 
 ---
 
