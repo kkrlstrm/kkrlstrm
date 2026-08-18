@@ -56,15 +56,17 @@ The repositories aren't scattered tools; they're one line of inquiry into the sa
 | **1** | Deterministic tenancy | [agent-tenancy](https://github.com/kkrlstrm/agent-tenancy) | Reference impl · production-derived |
 | **2** | Knowledge governance | [knowledge-graph-governance](https://github.com/kkrlstrm/knowledge-graph-governance) | Reference impl · production-derived |
 | **3** | Evaluation gates | [model-eval-gate](https://github.com/kkrlstrm/model-eval-gate) | Reference impl · production-derived |
-| **4** | Observability | [cc-logger](https://github.com/kkrlstrm/cc-logger) · [codex-logger](https://github.com/kkrlstrm/codex-logger) | Production-used |
-| **5** | Capability boundaries & execution control | [agent-guard](https://github.com/kkrlstrm/agent-guard) · [codex-guard](https://github.com/kkrlstrm/codex-guard) | Production-used |
-| **6** | Source-verified state & cost control | [gtm-research](https://github.com/kkrlstrm/gtm-research) | Reference impl · production-derived |
-| **7** | Provider abstraction & portable workflow | [gtm-pipeline](https://github.com/kkrlstrm/gtm-pipeline) | Reference impl · production-derived |
-| **8** | Recipient-side channel control | [gtm-deliverability](https://github.com/kkrlstrm/gtm-deliverability) | Reference impl · production-derived |
-| **9** | Human approval for unattended work | [abeyance](https://github.com/kkrlstrm/abeyance) | Reference impl · production-derived |
+| **4** | Observability | [cc-logger](https://github.com/kkrlstrm/cc-logger) · [codex-logger](https://github.com/kkrlstrm/codex-logger) | Production-used · component of callusguard |
+| **5** | Capability boundaries & execution control | [agent-guard](https://github.com/kkrlstrm/agent-guard) · [codex-guard](https://github.com/kkrlstrm/codex-guard) | Production-used · component of callusguard |
+| **6** | Did the run stay inside what it declared? | [wroteonly](https://github.com/kkrlstrm/wroteonly) | New · component of callusguard |
+| **7** | **The control lifecycle, end to end** | **[callusguard](https://github.com/kkrlstrm/callusguard)** | Production-derived · merged from 4 · 5 · 6 |
+| **8** | Source-verified state & cost control | [gtm-research](https://github.com/kkrlstrm/gtm-research) | Reference impl · production-derived |
+| **9** | Provider abstraction & portable workflow | [gtm-pipeline](https://github.com/kkrlstrm/gtm-pipeline) | Reference impl · production-derived |
+| **10** | Recipient-side channel control | [gtm-deliverability](https://github.com/kkrlstrm/gtm-deliverability) | Reference impl · production-derived |
+| **11** | Human approval for unattended work | [abeyance](https://github.com/kkrlstrm/abeyance) | Reference impl · production-derived |
 | **★** | The operating model around all of it | [gtm-engineering-operating-model](https://github.com/kkrlstrm/gtm-engineering-operating-model) | Operating doctrine |
 
-**Maturity legend** — *Production-used*: I run it against my own live agent workflows. *Reference implementation · production-derived*: the pattern is extracted from a system in production; the public repo isolates the reusable architecture, with tenant data, provider adapters, and company-specific policy kept private.
+**Maturity legend** — *Production-used*: I run it against my own live agent workflows. *Component of callusguard*: still standalone and still works, but the maintained loop is [callusguard](https://github.com/kkrlstrm/callusguard), which ships all five stages as one install. *Reference implementation · production-derived*: the pattern is extracted from a system in production; the public repo isolates the reusable architecture, with tenant data, provider adapters, and company-specific policy kept private.
 
 ---
 
@@ -77,8 +79,9 @@ AI-native platform  (proving ground: go-to-market)
 │
 ├── Intelligence & targeting     gtm-research · gtm-pipeline
 ├── Channel infrastructure       gtm-deliverability
-├── Runtime observability        cc-logger · codex-logger
-├── Execution controls           agent-guard · codex-guard
+├── Runtime observability        cc-logger · codex-logger      ┐
+├── Execution controls           agent-guard · codex-guard     ├─ all five merged
+├── Scope verification           wroteonly                     ┘  into callusguard
 ├── Human approval gates         abeyance
 ├── Quality & policy enforcement model-eval-gate
 ├── Knowledge governance         knowledge-graph-governance
@@ -87,7 +90,7 @@ AI-native platform  (proving ground: go-to-market)
         └── operated by a team, per → gtm-engineering-operating-model
 ```
 
-**The through-line:** observe what agents actually do → promote recurring failures into runtime controls → gate model economics with evals → gate durable memory → isolate tenants structurally → run the motion on top → hold the irreversible parts in abeyance until a human who wasn't there says yes → and lead the humans who own all of it.
+**The through-line:** observe what agents actually do → promote recurring failures into runtime controls → verify each run stayed inside what it declared, and retire the rules that stopped earning their place → gate model economics with evals → gate durable memory → isolate tenants structurally → run the motion on top → hold the irreversible parts in abeyance until a human who wasn't there says yes → and lead the humans who own all of it.
 
 ---
 
