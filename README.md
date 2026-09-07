@@ -2,7 +2,7 @@
 
 ### Production architecture for deterministic systems built around probabilistic models.
 
-The pattern shows up everywhere I work: a probabilistic model in the middle, and a deterministic control layer around it that makes it safe to run — tenancy, evaluation, governance, observability, capability boundaries, state, provider abstraction, and a human accountability model. **Go-to-market is my proving ground**, not the point: it's a demanding, real-money domain where I've built and now *run* this stack across ~35 client workspaces. The architecture generalizes past it.
+The pattern shows up everywhere I work: a probabilistic model in the middle, and a deterministic control layer around it that makes it safe to run; tenancy, evaluation, governance, observability, capability boundaries, state, provider abstraction, and a human accountability model. **Go-to-market is my proving ground**, not the point: it's a demanding, real-money domain where I've built and now *run* this stack across ~45 active client workspaces. The architecture generalizes past it.
 
 My differentiator isn't that I automate tasks. It's that I build the **production layer around them** — the part most agent projects skip — and I lead the **function** that operates it.
 
