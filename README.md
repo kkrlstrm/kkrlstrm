@@ -1,119 +1,75 @@
 # Kai Karlstrom
 
-### Production architecture for deterministic systems built around probabilistic models.
+### Platform engineering for GTM engineers.
 
-The pattern shows up everywhere I work: a probabilistic model in the middle, and a deterministic control layer around it that makes it safe to run; tenancy, evaluation, governance, observability, capability boundaries, state, provider abstraction, and a human accountability model. **Go-to-market is my proving ground**, not the point: it's a demanding, real-money domain where I've built and now *run* this stack across ~45 active client workspaces. The architecture generalizes past it.
+I'm Director of GTM Engineering at Tam To Target, a B2B GTM agency. I design and run the
+internal platform a team of six GTM engineers builds client systems on: outbound, research,
+signals and content for 34 client companies, mostly in EdTech, K-12, higher education and
+gov-tech (September 2026).
 
-My differentiator isn't that I automate tasks. It's that I build the **production layer around them** — the part most agent projects skip — and I lead the **function** that operates it.
+The engineers are the platform's users. It gives them:
 
----
+- a **catalog**: one client slug resolves that client's repo, database, Slack channel, sending
+  workspace and task board, generated from a registry, never hand-edited;
+- a **read-only CLI** whose command set was chosen from telemetry (the 14 commands that cover
+  about 95% of real use);
+- **golden paths**: published skills for the common jobs (campaign copy, dial research, list
+  upload, queue grooming);
+- **unattended jobs** as separate apps, with drift detection between the repo and what is deployed;
+- **observability** of every agent session and tool call;
+- **guardrails** derived from recorded failures, and an **eval-gated model allowlist**;
+- **propose-then-apply** approval for anything that writes, sends or spends.
 
-## How I work — Build · Architect · Lead
-
-<table>
-<tr>
-<th align="left" width="33%">🔧 Build</th>
-<th align="left" width="33%">🏛 Architect</th>
-<th align="left" width="33%">🧭 Lead</th>
-</tr>
-<tr valign="top">
-<td>
-
-Production workflows, provider integrations, data pipelines, and agent runtimes that run unattended against real revenue data.
-
-</td>
-<td>
-
-State, tenancy, capability scoping, observability, evaluation, and governance — the deterministic control planes that make a probabilistic system safe to run.
-
-</td>
-<td>
-
-The operating model for a team that runs agents: decision rights, accountability, protection, and how judgment survives when the machine does the reps.
-
-</td>
-</tr>
-</table>
+I design the systems and run them. Coding agents write most of the code. The telemetry is how I
+know the result is right.
 
 ---
 
-## Two entry points
+## Start here
 
-The portfolio is one body of work with two faces — the systems, and the function that runs them. Start with whichever you're here for:
-
-- **🏛 [ai-native-gtm-architecture](https://github.com/kkrlstrm/ai-native-gtm-architecture)** — the **systems view**. How the control planes compose and the invariant each one enforces. The reference implementations sit under it.
-- **🧭 [gtm-engineering-operating-model](https://github.com/kkrlstrm/gtm-engineering-operating-model)** — the **leadership view**. How you set up and lead a team whose real work is directing agents. The organizational half most portfolios never show.
-
----
-
-## Production Agent Systems — the series
-
-The repositories aren't scattered tools; they're one line of inquiry into the same question — *what deterministic layer does a probabilistic model need around it to run in production?* — answered one control plane at a time.
-
-| # | Architectural question | Repository | Status |
-|---|---|---|---|
-| **0** | How do the layers compose? | [ai-native-gtm-architecture](https://github.com/kkrlstrm/ai-native-gtm-architecture) | Contract |
-| **1** | Deterministic tenancy | [agent-tenancy](https://github.com/kkrlstrm/agent-tenancy) | Reference impl · production-derived |
-| **2** | Knowledge governance | [knowledge-graph-governance](https://github.com/kkrlstrm/knowledge-graph-governance) | Reference impl · production-derived |
-| **3** | Evaluation gates | [model-eval-gate](https://github.com/kkrlstrm/model-eval-gate) | Reference impl · production-derived |
-| **4** | Observability | [cc-logger](https://github.com/kkrlstrm/cc-logger) · [codex-logger](https://github.com/kkrlstrm/codex-logger) | Production-used · component of callusguard |
-| **5** | Capability boundaries & execution control | [agent-guard](https://github.com/kkrlstrm/agent-guard) · [codex-guard](https://github.com/kkrlstrm/codex-guard) | Production-used · component of callusguard |
-| **6** | Did the run stay inside what it declared? | [wroteonly](https://github.com/kkrlstrm/wroteonly) | New · component of callusguard |
-| **7** | **The control lifecycle, end to end** | **[callusguard](https://github.com/kkrlstrm/callusguard)** | Production-derived · merged from 4 · 5 · 6 |
-| **8** | Source-verified state & cost control | [gtm-research](https://github.com/kkrlstrm/gtm-research) | Reference impl · production-derived |
-| **9** | Provider abstraction & portable workflow | [gtm-pipeline](https://github.com/kkrlstrm/gtm-pipeline) | Reference impl · production-derived |
-| **10** | Recipient-side channel control | [gtm-deliverability](https://github.com/kkrlstrm/gtm-deliverability) | Reference impl · production-derived |
-| **11** | Human approval for unattended work | [abeyance](https://github.com/kkrlstrm/abeyance) | Reference impl · production-derived |
-| **★** | The operating model around all of it | [gtm-engineering-operating-model](https://github.com/kkrlstrm/gtm-engineering-operating-model) | Operating doctrine |
-
-**Maturity legend** — *Production-used*: I run it against my own live agent workflows. *Component of callusguard*: still standalone and still works, but the maintained loop is [callusguard](https://github.com/kkrlstrm/callusguard), which ships all five stages as one install. *Reference implementation · production-derived*: the pattern is extracted from a system in production; the public repo isolates the reusable architecture, with tenant data, provider adapters, and company-specific policy kept private.
+| You are | Start with | Then |
+|---|---|---|
+| A platform, AI-infra or devtools engineer | [runtune](https://github.com/kkrlstrm/runtune) and its [evidence doc](https://github.com/kkrlstrm/runtune/blob/main/docs/EVIDENCE.md) | [model-eval-gate](https://github.com/kkrlstrm/model-eval-gate), [agent-tenancy](https://github.com/kkrlstrm/agent-tenancy), [internal-gtm-platform](https://github.com/kkrlstrm/internal-gtm-platform) |
+| Hiring for GTM platform, GTM systems or GTM engineering leadership | [internal-gtm-platform](https://github.com/kkrlstrm/internal-gtm-platform): the layers, what they measured, the known gaps | "What it measured" below, then [gtm-engineering-operating-model](https://github.com/kkrlstrm/gtm-engineering-operating-model) |
+| A GTM engineer or GTM engineering leader | [gtm-pipeline](https://github.com/kkrlstrm/gtm-pipeline), [gtm-research](https://github.com/kkrlstrm/gtm-research), [gtm-deliverability](https://github.com/kkrlstrm/gtm-deliverability) | [cc-logger](https://github.com/kkrlstrm/cc-logger) |
 
 ---
 
-## As layers
+## The platform, by layer
 
-The same repositories, grouped by where they sit in the stack:
-
-```
-AI-native platform  (proving ground: go-to-market)
-│
-├── Intelligence & targeting     gtm-research · gtm-pipeline
-├── Channel infrastructure       gtm-deliverability
-├── Runtime observability        cc-logger · codex-logger      ┐
-├── Execution controls           agent-guard · codex-guard     ├─ all five merged
-├── Scope verification           wroteonly                     ┘  into callusguard
-├── Human approval gates         abeyance
-├── Quality & policy enforcement model-eval-gate
-├── Knowledge governance         knowledge-graph-governance
-└── Platform architecture        agent-tenancy
-        │
-        └── operated by a team, per → gtm-engineering-operating-model
-```
-
-**The through-line:** observe what agents actually do → promote recurring failures into runtime controls → verify each run stayed inside what it declared, and retire the rules that stopped earning their place → gate model economics with evals → gate durable memory → isolate tenants structurally → run the motion on top → hold the irreversible parts in abeyance until a human who wasn't there says yes → and lead the humans who own all of it.
+| Layer | What it gives GTM engineers | Public reference implementation |
+|---|---|---|
+| Catalog and tenancy | One slug resolves every system a client has; the model never picks a tenant | [agent-tenancy](https://github.com/kkrlstrm/agent-tenancy) |
+| Observability | Every agent session and tool call in one warehouse | [cc-logger](https://github.com/kkrlstrm/cc-logger) · [codex-logger](https://github.com/kkrlstrm/codex-logger) · [cursor-logger](https://github.com/kkrlstrm/cursor-logger) |
+| Policy and guardrails | Rules at the tool boundary, written from recorded failures | [callusguard](https://github.com/kkrlstrm/callusguard) (components: agent-guard, codex-guard, wroteonly) |
+| Harness feedback loop | Telemetry → proposed change → human approval → measured against a control | [runtune](https://github.com/kkrlstrm/runtune) |
+| Model gateway | A cheaper model takes a task only after an eval clears it | [model-eval-gate](https://github.com/kkrlstrm/model-eval-gate) |
+| Context and knowledge | Governed, versioned writes to shared memory | [knowledge-graph-governance](https://github.com/kkrlstrm/knowledge-graph-governance) |
+| Self-service, delivery, human approval, team interfaces | CLI, published skills, fleet drift detection, propose-then-apply loops, an authority ledger, a Slack agent | Private (described in [internal-gtm-platform](https://github.com/kkrlstrm/internal-gtm-platform)) |
+| Workloads on the platform | List building, research, deliverability | [gtm-pipeline](https://github.com/kkrlstrm/gtm-pipeline) · [gtm-research](https://github.com/kkrlstrm/gtm-research) · [gtm-deliverability](https://github.com/kkrlstrm/gtm-deliverability) |
 
 ---
 
-## Writing — the thinking behind the leadership model
+## What it measured
 
-Published essays on what leadership becomes when a team's real work is directing agents. These are the arguments the [operating model](https://github.com/kkrlstrm/gtm-engineering-operating-model) is distilled from.
-
-- [The Layer Question — where leaders belong when teams run AI](https://www.linkedin.com/pulse/layer-question-where-leaders-belong-when-teams-run-ai-kai-karlstrom-qnzae)
-- [The Expertise Need Is Dissolving — Protection Is What Leaders Provision Now](https://www.linkedin.com/pulse/expertise-need-dissolving-protection-what-leaders-now-kai-karlstrom-ea5ae/)
-- [Leadership in the Age of AI Agents (The Leader as Friction)](https://www.linkedin.com/pulse/leadership-age-ai-agents-kai-karlstrom-umdfe)
-- [Developing Taste — the only leadership skill that survives the agent](https://www.linkedin.com/pulse/developing-taste-only-leadership-skill-survives-agent-kai-karlstrom-zywxe)
-- [The Taste Famine — transferring judgment when agents have eaten the reps](https://www.linkedin.com/pulse/how-transfer-judgment-when-agents-have-eaten-reps-kai-karlstrom-2vyoe/)
-- [Permission for Inarticulate Doubt](https://www.linkedin.com/pulse/permission-inarticulate-doubt-kai-karlstrom-5glue)
-- [The Builder's Trap — why the faster leader should give the build away](https://www.linkedin.com/pulse/builders-trap-why-leaders-should-delegate-age-ai-kai-karlstrom-opsje/)
+- I expected the platform to double how many clients each engineer could carry. It did not.
+  From Q1 to Q3 2026, clients with a launched campaign per engineer rose from 5.4 to 6.8 while
+  launches per engineer stayed at about 14 a month. Headcount and process changed in the same
+  months, so these numbers do not show the platform caused the rise. A baseline for the next
+  quarter is being taken now.
+- Emails sent rose 1.81x over the same period (58k to 105k a quarter).
+- Cold-email rules are graded against 171,151 sends and 3,002 human replies. About 74% of raw
+  "replies" were autoresponders, so dashboard reply rates run roughly 4x high.
+- Dial research: 100 organisations in 14.2 minutes; 0 fabricated contacts in a 1,472-record
+  evaluation.
+- runtune was developed against about 238,000 recorded tool calls and model requests. One of its
+  guard rules made failures worse until it was rewritten, and five of its recommendations changed
+  once checked against production. The
+  [evidence doc](https://github.com/kkrlstrm/runtune/blob/main/docs/EVIDENCE.md) keeps both.
 
 ---
 
-## What remains private
+## What stays private
 
-Some production adapters, company-specific policy layers, client datasets, and the end-to-end orchestration system remain private. The public repositories deliberately isolate the **reusable architectural patterns and reference implementations** — the architecture contract, not the proprietary implementation. That's the intended boundary, not a gap.
-
----
-
-## Contact
-
-- GitHub: [@kkrlstrm](https://github.com/kkrlstrm)
+Client data, credentials, provider adapters and company-specific policy. The public repos are
+reference implementations extracted from the running platform.
