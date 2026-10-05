@@ -52,9 +52,9 @@ know the result is right.
 
 ## What it measured
 
-- I expected the platform to double how many clients each engineer could carry. It did not.
-  From Q1 to Q3 2026, clients with a launched campaign per engineer rose from 5.4 to 6.8 while
-  launches per engineer stayed at about 14 a month. Headcount and process changed in the same
+- I expect the platform to double or triple how many clients each engineer can carry. It is heading that direction.
+  From Q1 to Q3 2026, clients with a launched campaign per engineer rose from 5.4 to 7.5 while
+  launches per engineer rose to about 19 a month. Headcount and process changed in the same
   months, so these numbers do not show the platform caused the rise. A baseline for the next
   quarter is being taken now.
 - Emails sent rose 1.81x over the same period (58k to 105k a quarter).
