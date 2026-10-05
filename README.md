@@ -3,7 +3,7 @@
 ### Platform engineering for GTM engineers.
 
 I'm Director of GTM Engineering at Tam To Target, a B2B GTM agency. I design and run the
-internal platform a team of six GTM engineers builds client systems on: outbound, research,
+internal platform a team of GTM engineers builds client systems on: outbound, research,
 signals and content for 38 client companies, mostly in EdTech, K-12, higher education and
 gov-tech (September 2026).
 
