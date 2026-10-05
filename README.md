@@ -57,12 +57,17 @@ know the result is right.
   launches per engineer rose to about 19 a month. Headcount and process changed in the same
   months, so these numbers do not show the platform caused the rise. A baseline for the next
   quarter is being taken now.
-- Emails sent rose 1.81x over the same period (58k to 105k a quarter).
-- Cold-email rules are graded against 171,151 sends and 3,002 human replies. About 74% of raw
-  "replies" were autoresponders, so dashboard reply rates run roughly 4x high.
-- Dial research: 100 organisations in 14.2 minutes; 0 fabricated contacts in a 1,472-record
-  evaluation.
-- runtune was developed against about 238,000 recorded tool calls and model requests. One of its
+  
+-Q3 2026 (July to September), with the same number of GTM engineers throughout:
+  - active clients rose from 27 to 37 (+37%);
+  - campaigns sent to clients rose about 60%, from about 20 a week to about 32;
+  - on-time delivery held steady: about 70% of campaigns reached the client on or before their
+    due date, both before and after the increase;
+  - meetings booked per client rose 35% (6.0 a month in Q2 to 8.0 in Q3);
+  - the share of emailed leads who sent a human reply rose 32% (1.91% to 2.52%).
+
+  
+runtune was developed against about 238,000 recorded tool calls and model requests. One of its
   guard rules made failures worse until it was rewritten, and five of its recommendations changed
   once checked against production. The
   [evidence doc](https://github.com/kkrlstrm/runtune/blob/main/docs/EVIDENCE.md) keeps both.
